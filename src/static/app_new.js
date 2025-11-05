@@ -66,12 +66,10 @@ function displayActivities(activities) {
 function populateActivitySelect(activities) {
   const activitySelect = document.getElementById("activity");
   const options = Object.keys(activities)
-    .map(
-      (name) => `<option value="${name}">${name}</option>`
-    )
+    .map((name) => `<option value="${name}">${name}</option>`)
     .join("");
 
-  activitySelect.innerHTML = '<option value="">-- Select an activity --</option>' + options;
+  activitySelect.innerHTML = "<option value=''>-- Select an activity --</option>" + options;
 }
 
 // Sign up for an activity
@@ -100,8 +98,7 @@ async function signUpForActivity() {
     if (response.ok) {
       showMessage(result.message, "success");
       document.getElementById("signup-form").reset();
-      // Refresh the activities list to show updated participant count
-      await loadActivities();
+      loadActivities(); // Refresh the activities list
     } else {
       showMessage(result.detail || "An error occurred", "error");
     }
@@ -141,8 +138,7 @@ async function unregisterParticipant(activityName, email) {
 
     if (response.ok) {
       showMessage(result.message, "success");
-      // Refresh the activities list to show updated participant count
-      await loadActivities();
+      loadActivities(); // Refresh the activities list
     } else {
       showMessage(result.detail || "An error occurred", "error");
     }
